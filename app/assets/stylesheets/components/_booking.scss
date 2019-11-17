@@ -1,0 +1,29 @@
+.booking-container {
+  width: 700px;
+  margin: 0 auto;
+  h1 {
+    color: $rose;
+  }
+  h3 {
+    color: #B4B3B3;
+    margin: 26px;
+  }
+}
+
+.icons-booking {
+  text-align: center;
+}
+
+.icons-booking a {
+  color: $rose;
+  font-size: 25px;
+  padding: 10px;
+}
+
+.icon-rose {
+  color: $rose;
+}
+
+#past-class {
+  background-color: $light-gray;
+}

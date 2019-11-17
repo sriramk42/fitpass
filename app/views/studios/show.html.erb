@@ -1,0 +1,118 @@
+<div class="bg-white">
+  <div class="container_em bg-white border p-3 sticky-top">
+    <div class="row d-flex">
+      <div class="col-4">
+        <div>
+          <%= cl_image_tag @studio.photo, style: 'width: 100%', crop: :fill %>
+        </div>
+      </div>
+      <div class="col-4">
+        <h3><%=@studio.name%></h3>
+        <p><%=@studio.description%></p>
+      </div>
+      <div class="col-4">
+        <div class="bg-white border p-3 sticky-top">
+        <div class="row justify-content-between" style="position: relative;">
+
+          <div class="d-flex space-between">
+            <a style="text-decoration:none;" href="#" class="rose-studio float-left mr-4 ml-2">Contact</a>
+            <p class="ml-2 mr-2 mt-2">
+              <span class="float-right"><i class="far fa-star" id="golden_star"></i></span>
+              <span class="float-right"><i class="far fa-star" id="golden_star"></i></span>
+              <span class="float-right"><i class="far fa-star" id="golden_star"></i></span>
+              <span class="float-right"><i class="far fa-star" id="golden_star"></i></span>
+            </p>
+            <a style="text-decoration:none;" href="#bott" class="rose-studio float-left btn ml-4 mr-2">Reviews</a>
+
+          </div>
+        </div>
+          <div class="d-flex justify-content-between mt-3">
+            <p><strong>Address</strong></p>
+            <p><%=@studio.address%></p>
+          </div>
+          <div class="d-flex justify-content-between mt-3">
+            <p><strong>Telephone</strong></p>
+            <p>09-342-765-23</p>
+          </div>
+          <div class="d-flex justify-content-between mt-3 border-botto  m">
+            <p><strong>e-mail</strong></p>
+            <p><%=@studio.email%></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <h1><center>Available Slots</center></h1>
+    <div class="row justify-content-md-center">
+      <div class="col-md-6">
+
+            <%@studio.courses.each do |course| %>
+              <div>
+                <ul class="card p-3 mb-3">
+                  <div class="course-info-card">
+                  <p><strong><%= course.name %></strong></p>
+                  <p><strong>Level:</strong> <%= course.difficulty%></p>
+                  <p><strong>Time:</strong> <%= course.time.to_formatted_s(:short) %></p>
+                  <p><strong>Capacity:</strong> <%= course.capacity%></p>
+                  <p><strong>Price:</strong> $<%= course.price%></p>
+                  <p><strong>Duration: </strong><%= course.duration%> min</p>
+                  <%= link_to "", course_path(course), class: 'course-info-card-link' %>
+                  </div>
+                  <div>
+                  <%= simple_form_for [course, Booking.new] do |f| %>
+                    <%= f.submit "Book", class: 'rose-studio' %>
+                  <% end %>
+                  </div>
+                </ul>
+              </div>
+            <% end %>
+        </div>
+      </div>
+
+
+  <h2 id="bott" class="text-center">Reviews</h2>
+  <div class="justify-content-center mr-5">
+    <ul>
+    <% @course_teacher_reviews.each do |course_name, teacher_reviews| %>
+      <div>
+        <h4 style="color: #D6B2B1"><%= course_name %></h4>
+        <ul>
+          <% teacher_reviews.each do |teacher_name, reviews| %>
+            <div>
+              <p style="color: #D6B2B1"><strong>Teacher: </strong><em><%= teacher_name %></em></p>
+              <ul>
+                <% reviews.each do |review| %>
+                  <div>
+                    <div class="card p-3 m-3">
+                        <div class="d-flex align-items-center">
+                          <img src="https://avatars1.githubusercontent.com/u/55873437?v=4" class="avatar m-3"/>
+                          <div class="w-50">
+                            <a><strong><%= review.title %></strong></a>
+                          <div class="d-flex">
+                            <% review.rating.times do %>
+                              <i class="far fa-star" id="golden_star"></i>
+                            <% end %>
+                          </div>
+                          </div>
+                            <p><%= review.content %></p>
+                            <a style="text-decoration:none;" class="rose-studio ml-2" href="#"> Like</a>
+                            <a style="text-decoration:none;"class="rose-studio ml-2"  href="#">Review</a>
+                          </div>
+                  </div>
+                <% end %>
+              </ul>
+            </div>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+    </ul>
+  </div>
+
+</div>
+
+
+
+
+

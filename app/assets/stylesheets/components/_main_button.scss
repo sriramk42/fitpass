@@ -1,0 +1,22 @@
+.btn-rose {
+  color: white;
+  background: $rose;
+  border: 1px solid $rose;
+  padding: 15px 50px;
+  border-radius: 50px;
+  transition: opacity 0.3s ease;
+  font-weight: bold;
+  margin-left: 102px;
+  display: table;
+  margin: 0 auto;
+  margin-top: 90px;
+  font-size: 20px;
+}
+
+.btn-rose:hover {
+  opacity: 1;
+  color: $rose;
+  background: white;
+}
+
+
